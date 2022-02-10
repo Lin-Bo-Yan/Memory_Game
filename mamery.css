@@ -1,0 +1,198 @@
+html {
+	box-sizing: border-box;
+  /* 屬性允許我們在元素的總寬度和高度中包括填充和邊框。 */
+} 
+.card
+/* 設定card外觀 */
+{
+height: 6rem;
+width: 6rem;	
+margin: 1rem 1rem;
+background: #141214;
+border: 2px solid red;  
+color: #ffffff;
+border-radius: 10px;
+/* 圓角 */
+cursor: pointer;
+/* 變換滑鼠圖案 */
+display: flex;
+justify-content: center;
+align-items: center;
+font-size: 0;
+/* 陰影元素 */
+box-shadow: 5px 2px 20px 0 rgba(22, 54, 101, 0.8);
+/* 淡入淡出 */
+transition: 0.75s;
+-webkit-transition: 0.75s;
+}
+html,body {
+	width: 100%;
+	height: 100%;
+	margin: 0;
+  /* 邊距用於在任何已定義的邊界之外的元素周圍創建空間。 */
+	padding: 0;
+  /* 填充用於在任何定義的邊界內圍繞元素的內容創建空間。 */
+
+}
+body {
+	/* 字體粗細 */
+    font-weight: bold;
+	font-family: 'Gloria Hallelujah', cursive;
+  /* 字體樣式。 */
+	font-size: 20px;
+  /* 設置字體大小： */
+  background-image: url(./img/楓之谷.png);
+  /* background-repeat: no-repeat; */
+  background-size: contain; 
+  background-position-x: center
+}
+
+h1 {
+	/* 字體樣式 */
+	font-family: 'Gloria Hallelujah', cursive;
+}
+.container {
+	display: flex;
+	/* Flex 將元素變成容器 */
+	justify-content: center;
+	/* 將彈性元素用左右方式對齊 */
+	align-items: center;
+	/* 將彈性元素用上下方式對齊 */
+	flex-direction: column;
+	/* 將彈性項目垂直排列整齊*/
+}
+.star:hover{
+	cursor: pointer;
+	color:  rgba(212, 39, 62, 0.8);
+}
+
+/* 做一個外框 */
+#myCards{
+	width: 45%;
+	background: rgba(6, 113, 229, 0.5);
+	padding: 1rem;
+	border-radius: 1px;
+	box-shadow: 8px 9px 26px 0 rgba(22, 54, 101, 0.8);
+	display: flex;
+	justify-content: space-evenly;
+	align-items: center;
+	flex-wrap: wrap;
+	/* 包裝彈性項目 wrap包裹 */
+	margin: 0 0 3em;
+	border-radius: 30px;
+	font-size: 30px;
+}
+.cards .card.open{
+	animation-name: flipInY;
+	transform: rotateY(180);
+	background: #02b3e4;
+	cursor: default;
+	-webkit-backface-visibility: visible !important;
+	backface-visibility: visible !important;
+	animation-duration: .75s;
+}
+.cards .card.show{
+	font-size: 30px;
+} 
+/* 翻牌特效 */
+.card:hover{
+	background:rgba(19, 158, 6, 0.753)
+  }
+
+  /* toggle 翻牌  */
+  .cards .card.matched {
+	animation-name: rubberBand;
+	cursor: default;
+	background: rgba(219, 243, 6, 0.753);
+	font-size: 33px;
+	-webkit-backface-visibility: visible !important;
+	backface-visibility: visible !important;
+	animation-duration: .75s;
+}
+
+.cards .card.unmatched {
+	 animation-name: pulse;       /* functiom 名稱 */
+	-webkit-backface-visibility: visible !important;
+	backface-visibility: visible !important;
+	animation-duration: .75s;
+	background: #e2043b;
+}
+.cards .card.disabled {
+	pointer-events: none;
+}
+
+/* @keyframes css3 動畫特效 */
+/* 多功能值  Multiple function values */
+
+/* open */
+@keyframes flipInY {
+	from {
+		transform: perspective(400px) rotate3d(0, 1, 0, 90deg);
+		animation-timing-function: ease-in;
+		opacity: 0;
+	}
+
+	40% {
+		transform: perspective(400px) rotate3d(0, 1, 0, -20deg);
+		animation-timing-function: ease-in;
+	}
+
+	60% {
+		transform: perspective(400px) rotate3d(0, 1, 0, 10deg);
+		opacity: 1;
+	}
+
+	80% {
+		transform: perspective(400px) rotate3d(0, 1, 0, -5deg);
+	}
+
+	to {
+		transform: perspective(400px);
+	}
+}
+
+/* matched */
+@keyframes rubberBand {
+	from {
+		transform: scale3d(1, 1, 1);
+	}
+
+	30% {
+		transform: scale3d(1.25, 0.75, 1);
+	}
+
+	40% {
+		transform: scale3d(0.75, 1.25, 1);
+	}
+
+	50% {
+		transform: scale3d(1.15, 0.85, 1);
+	}
+
+	65% {
+		transform: scale3d(.95, 1.05, 1);
+	}
+
+	75% {
+		transform: scale3d(1.05, .95, 1);
+	}
+
+	to {
+		transform: scale3d(1, 1, 1);
+	}
+}
+
+/* unmatched */
+@keyframes pulse {
+	from {
+		transform: scale3d(1, 1, 1);
+	}
+
+	50% {
+		transform: scale3d(1.2, 1.2, 1.2);
+	}
+
+	to {
+		transform: scale3d(1, 1, 1);
+	}
+}
